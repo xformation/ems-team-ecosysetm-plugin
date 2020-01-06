@@ -1,0 +1,132 @@
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #52545c;
+    background-color: #efefef;
+    height: 100%;
+    width: 100%;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #52545c;
+}
+input, button, select, textarea {
+    margin: 0;
+    line-height: inherit;
+    border-radius: 0;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+input, button, select, textarea {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+input, select {
+    background-color: #fff;
+    color: #303133;
+    border: none;
+    box-shadow: none;
+}
+input {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    width: 190px;
+}
+small, .small {
+    font-size: 12px;
+    font-weight: normal;
+}
+table, tr, td, th {
+    border: #dadada 1px solid;
+}
+th, td {
+    padding: 10px !important;
+    height: 30px;
+}
+
+.adminssion-main{
+    margin: 15px;
+    display: block;
+    border: 1px solid #dddddd;
+}
+.bg-heading-admission {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #f6f6f6;
+    font-size: 1.5rem;
+}
+.bg-heading-admission i{
+    font-size: 1.5em;
+}
+.adminssion-main .remainder{
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
+}
+
+.fee-text{
+    font-size: 2.5em;
+    color: #e55a5a;
+}
+.remainder{
+    font-size: 1em;
+    font-weight: 500;
+}
+.admissionGridShow .bg-heading{
+    color: rgb(78, 144, 203);
+    font-size: 1.2rem;
+    background-color: #f6f6f6;
+}
+.table-striped input[type=checkbox]{
+    width: auto;
+}
+.table-striped tbody {
+    display:block;
+    max-height:500px;
+    overflow-y:auto;
+}
+.table-striped thead, .table-striped tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.table-striped tbody tr .btn{
+    font-size: 1em;
+}
+.head-prime{
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: rgb(61, 155, 239);
+}
+.btn-adm{
+    border: 2px solid #3697ef;
+}
+.tabsAdmission .tab{
+    background: #cecece !important;
+    border-bottom: 2px solid rgba(74, 161, 241, 0.7);
+    color: #3d9bef;
+    display: inline-block;
+    padding: 5px 15px 0 15px;
+    border-radius: 6px 6px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.tabsAdmission .tab:hover{
+    color: #3d9bef;
+}
+.tabsAdmission .content{
+    border: 2px solid #3697ef;
+}
+.profile-label {
+    color: rgb(78, 144, 203) !important;
+    padding-right: 5px;
+}

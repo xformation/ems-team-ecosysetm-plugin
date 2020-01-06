@@ -1,0 +1,382 @@
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #52545c;
+    background-color: #efefef;
+    height: 100%;
+    width: 100%;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #52545c;
+}
+input, button, select, textarea {
+    margin: 0;
+    line-height: inherit;
+    border-radius: 0;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+input, button, select, textarea {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+input, select {
+    background-color: #fff;
+    color: #303133;
+    border: none;
+    box-shadow: none;
+}
+input {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    width: 190px;
+}
+small, .small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/*********************************** General ***********************************/
+
+.has-error .error{
+    display: block;
+}
+
+.error{
+    color: #e02f44;
+    display: none;
+}
+
+/********************************* College Info *******************************/
+
+.info-container .logo{
+    width: 100px;
+    height: 18px;
+}
+
+.info-container .background {
+    width: 500px;
+}
+
+/******************************** College Branches ********************************/
+
+.react-strap-modal-container > .modal-content{
+    padding: 0px !important;
+}
+
+.react-strap-modal-container .modal-header{
+    background: #1c95ea;
+    border-bottom: 1px solid #c7d0d9;
+    box-shadow: none !important;
+}
+
+.react-strap-modal-container .modal-header .modal-title{
+    margin-bottom: 0px;
+    padding: 17px 10px;
+    color: white;
+}
+
+/********************************** Calendar *******************************/
+
+.calendar-container{
+    min-height: max-content;
+    height: calc(100vh - 100px);
+}
+
+.calendar-container .rbc-event-label {
+    display: none;
+}
+
+.calendar-event-container{
+    padding: 5px;
+}
+
+.calendar-event-container .image-container{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.calendar-event-container .text-container{
+    display: inline-block;
+    padding-left: 10px;
+}
+
+
+.authorized-signatory-container h3, 
+.authorized-signatory-container small {
+    color: #7d7d7d;
+}
+.authorized-signatory-container .h3, 
+.authorized-signatory-container h3 {
+    font-size: 1.50rem;
+}
+.authorized-signatory-container small, 
+.authorized-signatory-container .small {
+    font-size: 12px;
+    font-weight: normal;
+}
+.form-h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #363333;
+    text-transform: uppercase;
+}
+.max-width-18 {
+    max-width: 17.8rem !important;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.gf-form-input {
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #303133;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #dde4ed;
+    border-radius: 0 3px 3px 0;
+    box-shadow: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.upload-cursor {
+    cursor: pointer;
+    color: #5ccefc;
+    margin-left: 2rem;
+    width: 15rem;
+}
+.l-grey {
+    color: #cecece;
+}
+textarea.gf-form-input {
+    overflow: auto;
+    white-space: pre-wrap;
+    height: auto;
+    max-width: 27rem !important;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.ht-150 {
+    height: 150px !important;
+}
+.gf-form {
+    margin-bottom: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: left;
+    position: relative;
+}
+.section {
+    margin-right: 3rem;
+    vertical-align: top;
+    display: inline-block;
+}
+.gf-form-button-row {
+    padding-top: 1.5rem;
+    padding-right: 2rem;
+    float: right;
+}
+.bs {
+    width: 100px;
+    border-bottom: 2px solid #4d4d4d;
+    background-color: #84bf48;
+    color: #fff;
+}
+.bs:hover{
+    color: #ffffff;
+}
+.bs.focus, .bs:focus{
+    box-shadow: 0 0 0 0rem rgba(0,0,0,0);
+}
+
+.gf-form-button-row a, 
+.gf-form-button-row button {
+    margin-right: 1rem;
+}
+
+
+/**************************************** CSS for modal popup ***********************************/
+.modal-backdrop{
+    background-color: #efefef;
+}
+.modal-dialog{
+    position: fixed;
+    z-index: 1050;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    background-clip: padding-box;
+    outline: none;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    max-width: 650px;
+}
+
+.react-strap-modal-container > .modal-content {
+    padding: 0px !important;
+    border: 0;
+    border-radius: 0;
+}
+.react-strap-modal-container .modal-header {
+    background: #1c95ea;
+    border-bottom: 1px solid #c7d0d9;
+    box-shadow: none !important;
+    padding: 0;
+    border-radius: 0;
+}
+.react-strap-modal-container .modal-header .modal-title {
+    margin-bottom: 0px;
+    padding: 17px 10px;
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.1;
+}
+
+.gf-form-label {
+    padding: 8px 10px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #dde4ed;
+    display: block;
+    height: 35px;
+    border: 1px solid #dde4ed;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    margin-bottom: 0;
+}
+.react-strap-modal-container .border-bottom {
+    border-bottom: 2px solid #41444b!important;
+}
+.react-strap-modal-container .btn-success {
+    color: #fff;
+    text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #86be4c;
+    background-image: linear-gradient(to bottom, #8cc353, #7cb840);
+    background-repeat: repeat-x;
+    border-color: #8cc353;
+    font-size: 13px;
+    padding: 0.7rem 1rem;
+    border-radius: 2px;
+    font-weight: 500;
+    line-height: 1;
+    width: 100px;
+}
+.react-strap-modal-container .btn-success:hover, 
+.react-strap-modal-container .btn-success.focus,
+.react-strap-modal-container .btn-success:focus, 
+.react-strap-modal-container .btn-success:active, 
+.react-strap-modal-container .btn-success.active, 
+.react-strap-modal-container .btn-success.disabled, 
+.react-strap-modal-container .btn-success[disabled] {
+    color: #fff;
+    background-image: none;
+    background-color: #8cc353;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+}
+
+.react-strap-modal-container .btn-success:not(:disabled):not(.disabled).active:focus,
+.react-strap-modal-container .btn-success:not(:disabled):not(.disabled):active:focus, 
+.react-strap-modal-container .show>.btn-success.dropdown-toggle:focus{
+    background-color: #8cc353;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+    border-color: #8cc353;   
+}
+
+.react-strap-modal-container .btn-success:not(:disabled):not(.disabled).active, 
+.react-strap-modal-container .btn-success:not(:disabled):not(.disabled):active, 
+.react-strap-modal-container .show>.btn-success.dropdown-toggle{
+    background-color: #8cc353;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+    border-color: #8cc353;  
+}
+
+.react-strap-modal-container .btn-danger {
+    color: #fff;
+    text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #bbc0c7;
+    background-image: linear-gradient(to bottom, #c1c6cd, #b1b6bf);
+    background-repeat: repeat-x;
+    border-color: #c1c6cd;
+    font-size: 13px;
+    padding: 0.7rem 1rem;
+    border-radius: 2px;
+    font-weight: 500;
+    line-height: 1;
+    width: 100px;
+}
+.react-strap-modal-container .btn-danger:hover,
+.react-strap-modal-container .btn-danger.focus,
+.react-strap-modal-container .btn-danger:focus, 
+.react-strap-modal-container .btn-danger:active, 
+.react-strap-modal-container .btn-danger.active, 
+.react-strap-modal-container .btn-danger.disabled, 
+.react-strap-modal-container .btn-danger[disabled]{
+    color: #fff;
+    background-image: none;
+    background-color: #c1c6cd;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+}
+.react-strap-modal-container .btn-danger:not(:disabled):not(.disabled).active:focus,
+.react-strap-modal-container .btn-danger:not(:disabled):not(.disabled):active:focus, 
+.react-strap-modal-container .show>.btn-danger.dropdown-toggle:focus{
+    background-color: #c1c6cd;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+    border-color: #c1c6cd;   
+}
+.react-strap-modal-container .btn-danger:not(:disabled):not(.disabled).active, 
+.react-strap-modal-container .btn-danger:not(:disabled):not(.disabled):active, 
+.react-strap-modal-container .show>.btn-danger.dropdown-toggle{
+    background-color: #c1c6cd;
+    box-shadow:0 0 0 0 rgba(0,0,0,0);
+    border-color: #c1c6cd;  
+}
+
+.gf-form-input {
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #303133;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #dde4ed;
+    border-radius: 0 3px 3px 0;
+    box-shadow: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

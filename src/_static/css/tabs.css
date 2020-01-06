@@ -1,0 +1,78 @@
+/**************************************** CSS for tabs ***********************************/
+.nav-tabs {
+  border-bottom: 0px !important;
+  padding-left: 0px !important;
+}
+.nav-link {
+  margin: 0px !important;
+}
+.nav-tabs .nav-link {
+  padding: 0rem;
+  line-height: 1.5;
+  border: 0px;
+  position: relative;
+  margin: 10px 10px !important;
+  left: 15px;
+  cursor: pointer;
+}
+.nav-tabs .nav-item.show .nav-link, 
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:focus, 
+.nav-tabs .nav-link:hover {
+  border-bottom: 4px solid #1486c7;
+  color: #1486c7;
+  background: none;
+}
+.nav-link.side-active {
+  border-right: 2px solid #1486c7;
+  border-bottom: none;
+}
+.vertical-tab-container .nav-item {
+  float: left;
+  width: 100%;
+}
+.nav-link.side-active {
+  border-right: 2px solid #1486c7;
+}
+.nav-tabs .vertical-nav-link.nav-link{
+  display: block;
+  left: 0;
+}
+
+.nav-tabs .nav-item.show .vertical-nav-link.nav-link, 
+.nav-tabs .vertical-nav-link.nav-link.active,
+.nav-tabs .vertical-nav-link.nav-link:focus, 
+.nav-tabs .vertical-nav-link.nav-link:hover {
+  border-bottom: none;
+  border-right: 2px solid #1486c7;
+  color: inherit;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.vertical-tab-container .nav-tabs .nav-item{
+  float: left;
+  width: 100%;
+}
+
+
+.bottom-box-shadow {
+  -webkit-box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.3);
+}
+.border-left {
+  border-left: 20px solid #efefef;
+  margin-bottom: 0;
+}
+.vertical-nav-link{
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px !important;
+  border-radius: 3px;
+}
+.tab-content {
+  background-color: white;
+}
+.border-left {
+  border-left: 20px solid #efefef!important;
+  margin-bottom: 0;
+}

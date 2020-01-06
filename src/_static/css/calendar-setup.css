@@ -1,0 +1,101 @@
+body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #52545c;
+    background-color: #efefef;
+    height: 100%;
+    width: 100%;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #52545c;
+}
+a, area, button, [role='button'], input, label, select, summary, textarea {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+input, button, select, textarea {
+    margin: 0;
+    line-height: inherit;
+    border-radius: 0;
+}
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+input, button, select, textarea {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+input, select {
+    background-color: #fff;
+    color: #303133;
+    border: none;
+    box-shadow: none;
+}
+input {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    width: 190px;
+}
+small, .small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.gf-form-label {
+    padding: 8px 10px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    font-weight: 500;
+    font-size: 12px;
+    background-color: #dde4ed;
+    display: block;
+    height: 35px;
+    border: 1px solid #dde4ed;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+}
+.bg-transparent {
+    background: transparent;
+}
+input, select {
+    background-color: #fff;
+    color: #303133;
+    border: none;
+    box-shadow: none;
+}
+select, input[type="file"] {
+    height: 35.5px;
+    line-height: 35.5px;
+}
+select {
+    width: 220px;
+    border: 1px solid #dde4ed;
+    background-color: #fff;
+    cursor: pointer;
+}
+[type='date'] {
+    background: #fff url(../img/calendar.svg) 97% 50% no-repeat;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  pointer-events: none !important;
+}
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+input[type="button"]{
+    width: auto;
+}
