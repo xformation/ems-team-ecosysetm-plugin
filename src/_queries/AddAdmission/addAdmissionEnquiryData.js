@@ -1,0 +1,47 @@
+import gql from 'graphql-tag';
+
+export const ADD_ADMISSION_ENQUIRY_DATA = gql`
+query{
+    createAdmissionDataCache{
+        branches{
+            id,
+            branchName,
+            college{
+                id
+            }
+        }
+        departments{
+            id
+            name
+            branch{
+                id
+            }
+        }
+        batches{
+            id
+            batch
+            department{
+                id
+            }
+        }
+        states{
+            id
+            stateName
+            country{
+                id
+            }
+        }
+        cities{
+            id
+            cityName
+            state{
+                id
+            }
+        }
+        courses{
+            id
+            description
+        }
+    }
+}
+`;

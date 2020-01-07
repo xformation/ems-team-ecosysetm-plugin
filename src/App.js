@@ -8,7 +8,7 @@ import { history } from './_helpers';
 import './_static/scripts/teamsapp';
 import { CollegeInfo } from './CollegeInfo';
 import AdminssionInfo from './Admission';
-import { AddadminssionInfo } from './Addadmission';
+import AddadminssionInfo from './Addadmission';
 import "./_static/css/tabs.css";
 import { createGraphQLClient } from './createGraphQLClient';
 
