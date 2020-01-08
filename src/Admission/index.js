@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { admissionSettingsServices } from '../_services/admissionSettings.services';
 import '../_static/css/admission-settings.css';
 import withLoadingHandler from '../_helpers/loading.handler';
-import { GET_ADMISSION_DATA, ADMISSION_ENQUIRY_DATA } from '../_queries/admission';
+import { GET_ADMISSION_DATA, ADMISSION_ENQUIRY_DATA } from '../_queries/Admission';
 
 class AdminssionInfo extends React.Component {
     constructor(props) {

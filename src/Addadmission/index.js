@@ -33,6 +33,8 @@ const customCss = {
 class AddadminssionInfo extends React.Component {
     cumulativeResult = [];
     admissionFormRef = [];
+    personalFormRef = [];
+    academicHistoryFormRef = [];
     constructor(props) {
         super(props);
         this.state = {
@@ -62,7 +64,9 @@ class AddadminssionInfo extends React.Component {
             branches: [],
             batches: [],
             states: [],
-            cities: []
+            cities: [],
+            isApiCalled: false,
+            showMessage: false
         };
         this.reassignConfig();
         this.onAdmissionDetailsChanged = this.onAdmissionDetailsChanged.bind(this);
@@ -73,7 +77,15 @@ class AddadminssionInfo extends React.Component {
         this.createDepartments = this.createDepartments.bind(this);
         this.createBranches = this.createBranches.bind(this);
         this.createCities = this.createCities.bind(this);
+        this.createBatches = this.createBatches.bind(this);
+        this.createStates = this.createStates.bind(this);
+        this.createCities = this.createCities.bind(this);
+        this.onCompletePersonalForm = this.onCompletePersonalForm.bind(this);
+        this.onCompleteAcademicHistoryForm = this.onCompleteAcademicHistoryForm.bind(this);
         this.admissionFormRef = React.createRef();
+        this.personalFormRef = React.createRef();
+        this.academicHistoryFormRef = React.createRef();
+        this.documentsFormRef = React.createRef();
     }
 
     handleRadioChange(e) {
@@ -160,6 +172,67 @@ class AddadminssionInfo extends React.Component {
         return citiesOptions;
     }
 
+    createBatches(batches, selectedDepartmentId) {
+        let batchesOptions = [];
+        for (let i = 0; i < batches.length; i++) {
+            let dptId = "" + batches[i].department.id;
+            if (dptId == selectedDepartmentId) {
+                batchesOptions.push({
+                    value: batches[i].id,
+                    text: batches[i].batch
+                });
+            }
+        }
+        return batchesOptions;
+    }
+
+    onCompletePersonalForm(result) {
+        result.clear(false, true);
+        this.totalResult += 1;
+        this.cumulativeResult = {
+            ...this.cumulativeResult,
+            ...result.data
+        };
+        if (this.totalResult === 3) {
+            this.sendData();
+        }
+    }
+
+    onCompleteAcademicHistoryForm(result) {
+        result.clear(false, true);
+        this.totalResult += 1;
+        this.cumulativeResult = {
+            ...this.cumulativeResult,
+            ...result.data
+        };
+        if (this.totalResult === 3) {
+            this.sendData();
+        }
+    }
+
+    createStates(states) {
+        let statesOptions = [];
+        for (let i = 0; i < states.length; i++) {
+            statesOptions.push({
+                value: states[i].id,
+                text: states[i].stateName
+            });
+        }
+        return statesOptions;
+    }
+
+    createCourseOptions(courses) {
+        let coursesOptions = [];
+        for (let i = 0; i < courses.length; i++) {
+            let course = courses[i];
+            coursesOptions.push({
+                value: courses[i].description,
+                text: courses[i].description
+            });
+        }
+        return coursesOptions;
+    }
+
     getStudentImage = (e) => {
         const { admissionData } = this.state;
         admissionData.uploadPhoto = URL.createObjectURL(e.target.files[0]);
@@ -175,17 +248,27 @@ class AddadminssionInfo extends React.Component {
     }
 
     sendData() {
-        const { addAdmissionApplicationMutation } = this.props;
-        return addAdmissionApplicationMutation({
+        const { addAdmissionMutation } = this.props;
+        this.setState({
+            isApiCalled: true
+        });
+        return addAdmissionMutation({
             variables: {
                 input: {
                     ...this.cumulativeResult
                 }
             },
         }).then((data) => {
-            console.log("success");
+            this.setState({
+                isApiCalled: false,
+                showMessage: true
+            });
+
         }).catch((error) => {
-            console.log("failure");
+            this.setState({
+                isApiCalled: false,
+                showMessage: false
+            });
         });
     }
 
@@ -195,7 +278,7 @@ class AddadminssionInfo extends React.Component {
     DOCUMENTS = {};
 
     reassignConfig() {
-        const branches = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.branches : []
+        const branches = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.branches : [];
         this.ADMISSION_DETAILS = {
             title: "",
             showQuestionNumbers: "off",
@@ -246,7 +329,7 @@ class AddadminssionInfo extends React.Component {
                     requiredErrorText: 'Please enter State',
                     isRequired: this.isActive,
                     startWithNewLine: true,
-                    choices: []
+                    choices: this.createStates(this.props.data.createAdmissionDataCache.states)
                 },
                 {
                     type: 'dropdown',
@@ -265,7 +348,7 @@ class AddadminssionInfo extends React.Component {
                     requiredErrorText: 'Please enter Course',
                     isRequired: this.isActive,
                     startWithNewLine: true,
-                    choices: [],
+                    choices: this.createCourseOptions(this.props.data.createAdmissionDataCache.courses),
                     defaultValue: ""
                 },
             ]
@@ -498,9 +581,14 @@ class AddadminssionInfo extends React.Component {
         this.totalResult = 0;
         this.cumulativeResult = {};
         this.admissionFormRef.current.survey.completeLastPage();
+        this.personalFormRef.current.survey.completeLastPage();
+        this.academicHistoryFormRef.current.survey.completeLastPage();
+
     }
 
     render() {
+        const { isApiCalled, showMessage } = this.state;
+        console.log(showMessage);
         return (
             <section className="xform-container">
                 <div className="student-profile-container">
@@ -514,8 +602,10 @@ class AddadminssionInfo extends React.Component {
                                 <label className="d-inline-block" htmlFor="active">Active</label>
                             </div>
                             <div className="d-inline-block float-right">
-                                <span className="mr-2 data-saved-message" style={{ fontSize: "13px", color: "#AA0000", display: "none" }}>Data Saved</span>
-                                <button className="btn bs" type="submit" onClick={this.saveAllForm}>Save</button>
+
+                                <span className={"mr-2 data-saved-message " + (!showMessage ? 'd-none' : 'd-inline-block')}>Data Saved</span>
+
+                                <button className="btn bs" type="submit" onClick={this.saveAllForm} disabled={isApiCalled}>Save</button>
                             </div>
                         </div>
                     </div>
@@ -533,13 +623,13 @@ class AddadminssionInfo extends React.Component {
                         </div>
                         <div className="col-12 col-lg-9 col-md-12 col-sm-12 right-part custom-style">
                             <div className="row">
-                                <ReactSurvey.SurveyCollapseForm json={this.PERSONAL} css={customCss} ref={this.personalFormRef} />
+                                <ReactSurvey.SurveyCollapseForm json={this.PERSONAL} css={customCss} onComplete={this.onCompletePersonalForm} ref={this.personalFormRef} />
                             </div>
                             <div className="row">
-                                <ReactSurvey.SurveyCollapseForm json={this.ACADEMIC_HISTORY} css={customCss} />
+                                <ReactSurvey.SurveyCollapseForm json={this.ACADEMIC_HISTORY} css={customCss} onComplete={this.onCompleteAcademicHistoryForm} showCompletedPage={false} ref={this.academicHistoryFormRef} />
                             </div>
                             <div className="row">
-                                <ReactSurvey.SurveyCollapseForm json={this.DOCUMENTS} css={customCss} />
+                                <ReactSurvey.SurveyCollapseForm json={this.DOCUMENTS} css={customCss} showCompletedPage={false} ref={this.documentsFormRef} />
                             </div>
                         </div>
                     </div>

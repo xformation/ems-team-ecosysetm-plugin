@@ -195,3 +195,7 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
     background-color: rgba(0,0,0,0);
     border-top: 0px solid rgba(0,0,0,0);
 }
+.data-saved-message{
+    font-size: 13px;
+    color:#AA0000;
+}
