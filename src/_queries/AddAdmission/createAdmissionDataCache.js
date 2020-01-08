@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const ADD_ADMISSION_ENQUIRY_DATA = gql`
+export const CREATE_ADMISSION_DATA_CACHE = gql`
 query{
     createAdmissionDataCache{
         branches{

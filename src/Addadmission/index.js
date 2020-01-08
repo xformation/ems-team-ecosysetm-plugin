@@ -5,7 +5,7 @@ import '../_static/css/custom.css';
 import * as ReactSurvey from "xform-react";
 import "xform-react/xform.min.css";
 import withLoadingHandler from '../_helpers/loading.handler';
-import { GET_ADD_ADMISSION_DATA, ADD_ADMISSION_ENQUIRY_DATA } from '../_queries/AddAdmission';
+import { CREATE_ADMISSION_DATA_CACHE, ADD_ADMISSION_APPLICATION } from '../_queries/AddAdmission';
 
 const customCss = {
     root: "form-container",
@@ -549,13 +549,10 @@ class AddadminssionInfo extends React.Component {
     }
 }
 
-export default graphql(GET_ADD_ADMISSION_DATA, {
-    options: ({ }) => ({
-        variables: {}
-    })
+export default graphql(CREATE_ADMISSION_DATA_CACHE, {
 })(withLoadingHandler(
-    graphql(ADD_ADMISSION_ENQUIRY_DATA, {
-
+    graphql(ADD_ADMISSION_APPLICATION, {
+        name: "addAdmissionMutation"
     })(AddadminssionInfo)
 ));
 

@@ -1,2 +1,2 @@
-export { GET_ADD_ADMISSION_DATA } from './loadAdmissionData';
-export { ADD_ADMISSION_ENQUIRY_DATA } from './addAdmissionEnquiryData';
+export { CREATE_ADMISSION_DATA_CACHE } from './createAdmissionDataCache';
+export { ADD_ADMISSION_APPLICATION } from './addAdmissionApplicationMutation';
