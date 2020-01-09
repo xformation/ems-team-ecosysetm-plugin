@@ -588,7 +588,6 @@ class AddadminssionInfo extends React.Component {
 
     render() {
         const { isApiCalled, showMessage } = this.state;
-        console.log(showMessage);
         return (
             <section className="xform-container">
                 <div className="student-profile-container">
