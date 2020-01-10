@@ -8,7 +8,7 @@ export default class ConfigurePage extends React.Component {
 
     onSelectboxChange(e) {
         const { name, value } = e.target;
-        window.microsoftTeams.settings.setValidityState(value === 'first' || value === 'second' || value === 'college-info');
+        window.microsoftTeams.settings.setValidityState(value === 'first' || value === 'second' || value === 'college-info' || value === 'admission' || value === 'addadmission' );
     }
 
     render() {
@@ -21,6 +21,9 @@ export default class ConfigurePage extends React.Component {
                         <select id="tabChoice" onChange={this.onSelectboxChange}>
                             <option value="">Select a tab</option>
                             <option value="college-info">College Info</option>
+                            <option value="admission">Admission Info</option>
+                            <option value="addadmission">Add Admission</option>
+                            <option value="addstudent">Add Student</option>
                         </select>
                     </div>
                 </div>

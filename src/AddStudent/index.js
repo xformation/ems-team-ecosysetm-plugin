@@ -5,7 +5,7 @@ import "xform-react/xform.min.css";
 import { addStudentSettingsServices } from '../_services/addStudentSettings.services';
 import '../_static/css/custom.css';
 import withLoadingHandler from '../_helpers/loading.handler';
-import { GET_STUDENT_ADMISSION_DATA, ADD_STUDENT } from '../_queries/Addstudent';
+import { GET_STUDENT_ADMISSION_DATA, ADD_STUDENT } from '../_queries/AddStudent';
 
 
 const customCss = {
