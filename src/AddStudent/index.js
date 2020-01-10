@@ -656,6 +656,7 @@ class AddstudentsInfo extends React.Component {
                 }
             ]
         };
+        let branches = this.props.data.createStudentFilterDataCache ? this.props.data.createStudentFilterDataCache.branches : [];
         this.ADMISSION_DETAILS = {
             title: "",
             showQuestionNumbers: "off",
@@ -685,7 +686,7 @@ class AddstudentsInfo extends React.Component {
                     requiredErrorText: 'Please enter Branch',
                     isRequired: true,
                     startWithNewLine: true,
-                    choices: this.createBranches(this.props.data.createStudentFilterDataCache.branches),
+                    choices: this.createBranches(branches),
                     defaultValue: ""
                 },
                 {

@@ -278,7 +278,9 @@ class AddadminssionInfo extends React.Component {
     DOCUMENTS = {};
 
     reassignConfig() {
-        const branches = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.branches : [];
+        let branches = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.branches : [];
+        let states = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.states : [];
+        let courses = this.props.data.createAdmissionDataCache ? this.props.data.createAdmissionDataCache.courses : [];
         this.ADMISSION_DETAILS = {
             title: "",
             showQuestionNumbers: "off",
@@ -329,7 +331,7 @@ class AddadminssionInfo extends React.Component {
                     requiredErrorText: 'Please enter State',
                     isRequired: this.isActive,
                     startWithNewLine: true,
-                    choices: this.createStates(this.props.data.createAdmissionDataCache.states)
+                    choices: this.createStates(states)
                 },
                 {
                     type: 'dropdown',
@@ -348,7 +350,7 @@ class AddadminssionInfo extends React.Component {
                     requiredErrorText: 'Please enter Course',
                     isRequired: this.isActive,
                     startWithNewLine: true,
-                    choices: this.createCourseOptions(this.props.data.createAdmissionDataCache.courses),
+                    choices: this.createCourseOptions(courses),
                     defaultValue: ""
                 },
             ]
