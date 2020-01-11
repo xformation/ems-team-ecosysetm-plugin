@@ -43,7 +43,7 @@ class AddstudentsInfo extends React.Component {
         this.state = {
             isApiCalled: false,
             showMessage: false,
-            uploadPhoto: null
+            uploadPhoto: null,
         }
         this.reassignConfig();
         this.onAdmissionDetailsChanged = this.onAdmissionDetailsChanged.bind(this);
@@ -62,6 +62,7 @@ class AddstudentsInfo extends React.Component {
         this.emergencyContactFormRef = React.createRef();
         this.personalFormRef = React.createRef();
         this.contactFormRef = React.createRef();
+        this.toggleTab = this.toggleTab.bind(this);
     }
 
     onAdmissionDetailsChanged(sender, options) {
@@ -733,9 +734,14 @@ class AddstudentsInfo extends React.Component {
         };
     }
 
+    toggleTab(tabNo) {
+        this.setState({
+            activeTab: tabNo,
+        });
+    }
 
     render() {
-        const { isApiCalled, showMessage } = this.state;
+        const { isApiCalled, showMessage, activeTab } = this.state;
         return (
             <section className="xform-container">
                 <div className="row">

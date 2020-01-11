@@ -199,3 +199,11 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
     font-size: 13px;
     color:#AA0000;
 }
+.student-flex div select,
+.student-flex div input{
+    width: 170px;
+    font-size: 14px;
+}
+.student-flex div button{
+    margin-top: 27px;
+}

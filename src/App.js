@@ -9,7 +9,7 @@ import './_static/scripts/teamsapp';
 import { CollegeInfo } from './CollegeInfo';
 import AdminssionInfo from './Admission';
 import AddAdminssionInfo from './Addadmission';
-import AddStudentInfo from './AddStudent';
+import Student from './StudentsTab/StudentsTab';
 import "./_static/css/tabs.css";
 import { createGraphQLClient } from './createGraphQLClient';
 
@@ -30,7 +30,7 @@ export class App extends React.Component {
                             <Route exact path={`${config.basePath}college-info`} component={CollegeInfo} />
                             <Route exact path={`${config.basePath}admission`} component={AdminssionInfo} />
                             <Route exact path={`${config.basePath}addadmission`} component={AddAdminssionInfo} />
-                            <Route exact path={`${config.basePath}addstudent`} component={AddStudentInfo} />  
+                            <Route exact path={`${config.basePath}student`} component={Student} />  
                         </div>
                     </Router>
                 </div>
