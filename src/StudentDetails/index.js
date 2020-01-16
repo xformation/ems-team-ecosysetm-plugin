@@ -45,7 +45,8 @@ class StudentsDetails extends React.Component {
             sections: [],
             studentTypes: [],
             genders: [],
-            search: ''
+            search: '',
+            isApiCalled: false
         }
         this.createBranches = this.createBranches.bind(this);
         this.createDepartments = this.createDepartments.bind(this);
@@ -65,16 +66,16 @@ class StudentsDetails extends React.Component {
         const mutateResLength = studentData.mutateResult.length;
         let chkAll = e.nativeEvent.target.checked;
         let els = document.querySelectorAll("input[type=checkbox]");
-    
+
         var empty = [].filter.call(els, function (el) {
-          if (chkAll) {
-            el.checked = true;
-          } else {
-            el.checked = false;
-          }
+            if (chkAll) {
+                el.checked = true;
+            } else {
+                el.checked = false;
+            }
         });
     }
-    
+
     onClickCheckbox(index, e) {
         const { id } = e.nativeEvent.target;
         let chkBox = document.querySelector("#" + id);
@@ -82,62 +83,65 @@ class StudentsDetails extends React.Component {
     }
 
     createStudentRows(objAry) {
+        const { studentData, isApiCalled } = this.state;
+        if (isApiCalled) {
+            return <tr><td colSpan="10" align="center">Students data is loading...</td></tr>;
+        }
+        if (objAry && objAry.length === 0) {
+            return <tr><td colSpan="10" align="center">No record found, Please select another Enquiry</td></tr>;
+        }
         let { search } = this.state.studentData;
         search = search.trim();
-        const mutateResLength = objAry.length;
         const retVal = [];
-        for (let x = 0; x < mutateResLength; x++) {
-          const tempObj = objAry[x];
-          const students = tempObj.data.getStudentList;
-          const length = students.length;
-          for (let i = 0; i < length; i++) {
-            const student = students[i];
-            if(search){
-              if(student.studentName.indexOf(search) !== -1){
+        const length = objAry.length;
+        for (let i = 0; i < length; i++) {
+            const student = objAry[i];
+            if (search) {
+                if (student.studentName.indexOf(search) !== -1) {
+                    retVal.push(
+                        <tr key={student.id}>
+                            <td>
+                                <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
+                            </td>
+                            <td>
+                                <Link className="table-link link-color" to={`/student-profile?id=${student.id}`}>
+                                    {student.studentName}
+                                </Link>
+                            </td>
+                            <td>{student.rollNo}</td>
+                            <td>{student.id}</td>
+                            <td>{student.department.name}</td>
+                            <td>{student.batch.batch}</td>
+                            <td>{student.section.section}</td>
+                            <td>{student.sex}</td>
+                            <td>{student.studentType}</td>
+                            <td>{student.emergencyContactNo}</td>
+                        </tr>
+                    );
+                }
+            } else {
                 retVal.push(
-                  <tr key={student.id}>
-                    <td>
-                      <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
-                    </td>
-                    <td>
-                        <Link className="table-link link-color" to={`/plugins/ems-student/page/student?id=${student.id}`}>
-                            {student.studentName}
-                        </Link>
-                    </td>
-                    <td>{student.rollNo}</td>
-                    <td>{student.id}</td>
-                    <td>{student.department.name}</td>
-                    <td>{student.batch.batch}</td>
-                    <td>{student.section.section}</td>
-                    <td>{student.sex}</td>
-                    <td>{student.studentType}</td>
-                    <td>{student.emergencyContactNo}</td>
-                  </tr>
+                    <tr key={student.id}>
+                        <td>
+                            <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
+                        </td>
+                        <td>
+                            <Link className="table-link link-color" to={`/student-profile?id=${student.id}`}>
+                                {student.studentName}
+                            </Link>
+                        </td>
+                        <td>{student.rollNo}</td>
+                        <td>{student.id}</td>
+                        <td>{student.department.name}</td>
+                        <td>{student.batch.batch}</td>
+                        <td>{student.section.section}</td>
+                        <td>{student.sex}</td>
+                        <td>{student.studentType}</td>
+                        <td>{student.emergencyContactNo}</td>
+                    </tr>
                 );
-              }
-            } else{
-              retVal.push(
-                <tr key={student.id}>
-                  <td>
-                    <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
-                  </td>
-                  <td>
-                    <Link className="table-link link-color" to={`/plugins/ems-student/page/student?id=${student.id}`}>
-                        {student.studentName}
-                    </Link>
-                  </td>
-                  <td>{student.rollNo}</td>
-                  <td>{student.id}</td>
-                  <td>{student.department.name}</td>
-                  <td>{student.batch.batch}</td>
-                  <td>{student.section.section}</td>
-                  <td>{student.sex}</td>
-                  <td>{student.studentType}</td>
-                  <td>{student.emergencyContactNo}</td>
-                </tr>
-              );
             }
-          }
+
         }
         return retVal;
     }
@@ -336,7 +340,6 @@ class StudentsDetails extends React.Component {
         const { mutate } = this.props;
         const { studentData } = this.state;
         e.preventDefault();
-
         let studentFilterInputObject = {
             branchId: studentData.branch.id,
             departmentId: studentData.department.id,
@@ -346,17 +349,23 @@ class StudentsDetails extends React.Component {
             studentType: studentData.studentType.id
         };
 
-
+        this.setState({
+            isApiCalled: true
+        })
         return mutate({
             variables: { filter: studentFilterInputObject },
         }).then(data => {
-            const sdt = data;
+            const sdt = data.data.getStudentList;
             studentData.mutateResult = [];
-            studentData.mutateResult.push(sdt);
+            studentData.mutateResult = sdt;
             this.setState({
-                studentData: studentData
+                studentData: studentData,
+                isApiCalled: false
             });
         }).catch((error) => {
+            this.setState({
+                isApiCalled: true
+            });
             return Promise.reject(`Could not retrieve student data: ${error}`);
         });
 
@@ -364,7 +373,7 @@ class StudentsDetails extends React.Component {
 
     render() {
         const { branches, departments, batches, sections, genders, studentTypes } = this.props.data.createStudentFilterDataCache || {};
-        const { studentData } = this.state;
+        const { studentData, isApiCalled } = this.state;
         return (
             <section className="xform-container">
                 <div className="row">
@@ -434,7 +443,8 @@ class StudentsDetails extends React.Component {
                                 </div>
                                 <div className="w-auto px-0">
                                     <label htmlFor=""></label>
-                                    <button className="btn btn-primary" id="btnFind" name="btnFind" onClick={this.onClick}>Search Students</button>
+                                    <button className="btn btn-primary" id="btnFind" name="btnFind" onClick={this.onClick}
+                                        disabled={isApiCalled}>Search Students</button>
                                 </div>
                             </div>
                         </div>
@@ -467,6 +477,7 @@ class StudentsDetails extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div className="student-profile-container"></div>
             </section>
         );
     }

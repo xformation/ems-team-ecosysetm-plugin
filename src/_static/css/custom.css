@@ -201,9 +201,118 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
 }
 .student-flex div select,
 .student-flex div input{
-    width: 170px;
+    width: 167px;
     font-size: 14px;
 }
 .student-flex div button{
     margin-top: 27px;
+}
+
+.striped-table {
+    display:block;
+    max-height:500px;
+    overflow-y:auto;
+}
+.striped-table thead, .striped-table tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.dblue-text {
+    color: #307dc2;
+    font-size: 2rem;
+}
+.profile-photo{
+    min-height: 200px;
+}
+.main-details .details-container {
+    border-bottom: 1px solid #cecece;
+}
+.main-details .details-container:last-child {
+    border-bottom: 0px;
+}
+.profile-label{
+    font-weight: 600;
+    line-height: 30px;
+}
+.box-text {
+    border: 1px solid #b5b5b5;
+    color: #b5b5b5;
+    margin: 10px 16px 0px 0px;
+    padding: 5px;
+}
+.bdr-bpttom {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #b5b5b5;
+}
+.w-40{
+    width: 40%;
+}
+.w-20{
+    width: 20%;
+}
+#txt-align > tr > th {
+    background-color: rgb(216, 216, 216);
+    border: 1px solid #868686;
+}
+#txt-align > tr > td {
+    text-align: left !important;
+    border: 1px solid #868686;
+}
+.cust-wh {
+    height: 31px;
+    width: 120px;
+}
+.cust-box-text {
+    border: 1px solid #b5b5b5;
+    color: #b5b5b5;
+    padding: 5px;
+}
+.details-container {
+    border-bottom: 1px solid #cecece;
+}
+
+.buttons-container .nav-tabs .nav-link{
+    left: 0;
+    padding: 0.7rem 1rem;
+    font-size: 13px;
+    border-radius: 2px;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0px 5px!important;
+    color: #fff;
+    text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #459ff0;
+    background-image: linear-gradient(to bottom, #3697ef, #5cabf2);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #3697ef;
+    height: 32px !important;
+    text-align: center;
+}
+.buttons-container .nav-tabs .nav-item.show .nav-link, 
+.buttons-container .nav-tabs .nav-link.active, 
+.buttons-container .nav-tabs .nav-link:focus, 
+.buttons-container .nav-tabs .nav-link:hover{
+    color: #fff;
+    background-image: none;
+    background-color: #3697ef;
+}
+
+.buttons-container .nav-tabs .nav-link.disabled,
+.buttons-container .nav-tabs .nav-link:disabled{
+    cursor: not-allowed;
+    opacity: 0.65;
+    box-shadow: none;
+}
+.buttons-container .nav-tabs .nav-link.active .uparrow{
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 10px solid #1486c7;
+    display: inline-block;
+    position: relative;
+    bottom: -12px;
 }
