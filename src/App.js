@@ -11,6 +11,7 @@ import AdminssionInfo from './Admission';
 import AddAdminssionInfo from './Addadmission';
 import Students from './StudentsTab/StudentsTab';
 import StudentProfile from './StudentProfile';
+import EditStudent from './EditStudent';
 import "./_static/css/tabs.css";
 import { createGraphQLClient } from './createGraphQLClient';
 
@@ -33,6 +34,7 @@ export class App extends React.Component {
                             <Route exact path={`${config.basePath}addadmission`} component={AddAdminssionInfo} />
                             <Route exact path={`${config.basePath}students`} component={Students} />
                             <Route exact path={`${config.basePath}student-profile`} component={StudentProfile} />  
+                            <Route exact path={`${config.basePath}editstudent`} component={EditStudent} />
                         </div>
                     </Router>
                 </div>

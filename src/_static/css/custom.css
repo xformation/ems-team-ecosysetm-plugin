@@ -274,7 +274,7 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
 
 .buttons-container .nav-tabs .nav-link{
     left: 0;
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 13px;
     border-radius: 2px;
     display: inline-block;
@@ -316,3 +316,12 @@ input[type="file"], input[type="image"], input[type="submit"], input[type="reset
     position: relative;
     bottom: -12px;
 }
+.width-8 {
+    width: 7.8rem !important;
+}
+
+@media print {
+    .dont-print {
+        display: none;
+    }
+ }

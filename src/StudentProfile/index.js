@@ -44,12 +44,12 @@ class StudentProfile extends React.Component {
                         <div className="d-inline-block float-left heading">Student Profile</div>
                         <div className="d-inline-block float-right">
                             <div className="dont-print">
-                                <button className="btn btn-primary mr-1">
+                                <button className="btn btn-primary mr-1" onClick={() => window.print()}>
                                     Print
                                 </button>
-                                <button className="btn btn-primary">
+                                <Link className="btn btn-primary" to={`/editstudent?id=${student.id}`}>
                                     Edit Student
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -155,29 +155,29 @@ class StudentProfile extends React.Component {
                                 <div className="main-details m-1 p-3 border">
                                     <div className="details-container">
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Fathers Name:</span>
                                                 <span>{student.fatherName}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Fathers Contact:</span>
                                                 <span>{student.emergencyContactNo}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Email Address</span>
                                                 <span>{student.alternateEmailAddress}</span>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Mothers Name:</span>
                                                 <span>{student.motherName}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Mothers Contact:</span>
                                                 <span>{student.alternateContactNumber}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Email Address:</span>
                                                 <span>{student.alternateEmailAddress}</span>
                                             </div>
@@ -185,29 +185,29 @@ class StudentProfile extends React.Component {
                                     </div>
                                     <div className="details-container pt-3">
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Address Line 1:</span>
                                                 <span>{student.addressLineOne}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Address Line 2:</span>
                                                 <span>{student.addressLineTwo}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Town:</span>
                                                 <span>{student.town}</span>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">State:</span>
                                                 <span>{student.state}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Country:</span>
                                                 <span>{student.country}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Pin Code:</span>
                                                 <span>{student.pincode}</span>
                                             </div>
@@ -215,43 +215,43 @@ class StudentProfile extends React.Component {
                                     </div>
                                     <div className="details-container pt-3">
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Adhar No:</span>
                                                 <span>{student.aadharNo}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Date Of Birth:</span>
                                                 <span>{student.strDateOfBirth}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Place Of Birth:</span>
                                                 <span>{student.placeOfBirth}</span>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Religion:</span>
                                                 <span>{student.religion}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Cast:</span>
                                                 <span>{student.caste}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Sub Cast:</span>
                                                 <span>{student.subCaste}</span>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Blood Group:</span>
                                                 <span>{student.bloodGroup}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Sex:</span>
                                                 <span>{student.sex}</span>
                                             </div>
-                                            <div className="col-md-4 mb-3">
+                                            <div className="col-md-4 mb-2">
                                                 <span className="profile-label">Student Type:</span>
                                                 <span>{student.studentType}</span>
                                             </div>
