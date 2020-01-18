@@ -33,6 +33,8 @@ const customCss = {
 class EditstudentsInfo extends React.Component {
     personalFormRef = [];
     contactFormRef = [];
+    totalResult = [];
+    cumulativeResult = [];
     emergencyContactFormRef = [];
     constructor(props) {
         super(props);
@@ -42,8 +44,12 @@ class EditstudentsInfo extends React.Component {
             branches: [],
             batches: [],
             sections: [],
-            submitted: false
+            submitted: false,
+            isApiCalled: false,
+            showMessage: false,
+            uploadPhoto: null
         }
+        this.reassignConfig();
         this.createDepartments = this.createDepartments.bind(this);       
         this.createBranches = this.createBranches.bind(this);
         this.createBatches = this.createBatches.bind(this);
@@ -54,6 +60,10 @@ class EditstudentsInfo extends React.Component {
         this.onCompleteContactDetailsForm = this.onCompleteContactDetailsForm.bind(this);
         this.contactFormRef = React.createRef();
         this.onCompleteEmergencyContactDetails = this.onCompleteEmergencyContactDetails.bind(this);
+        this.emergencyContactFormRef = React.createRef();
+        this.toggleTab = this.toggleTab.bind(this);
+        this.sendData = this.sendData.bind(this);
+        this.saveAllForms = this.saveAllForms.bind(this);
         this.emergencyContactFormRef = React.createRef();
     }
 
@@ -235,6 +245,41 @@ class EditstudentsInfo extends React.Component {
         if (this.totalResult === 4) {
             this.sendData();
         }
+    }
+
+    saveAllForms(e) {
+        e.preventDefault();
+        this.totalResult = 0;
+        this.cumulativeResult = {};
+        this.personalFormRef.current.survey.completeLastPage();
+        this.contactFormRef.current.survey.completeLastPage();
+        this.emergencyContactFormRef.current.survey.completeLastPage();
+        
+    }
+
+    sendData() {
+        const { addStudentMutation } = this.props;
+        this.setState({
+            isApiCalled: true
+        });
+        return addStudentMutation({
+            variables: {
+                input: {
+                    ...this.cumulativeResult
+                }
+            },
+        }).then((data) => {
+            this.setState({
+                isApiCalled: false,
+                showMessage: true
+            });
+
+        }).catch((error) => {
+            this.setState({
+                isApiCalled: false,
+                showMessage: false
+            });
+        });
     }
 
     PERSONAL = {};
@@ -721,8 +766,15 @@ class EditstudentsInfo extends React.Component {
         };
     }
 
+    toggleTab(tabNo) {
+        this.setState({
+            activeTab: tabNo,
+        });
+    }
+
     render() {
         const { studentData, departments, batches, branches, sections } = this.state;
+        const { isApiCalled, showMessage } = this.state;
         return (
             <section className="xform-container">
                 <div className="row">
@@ -739,8 +791,8 @@ class EditstudentsInfo extends React.Component {
                             <div className="col-12 mb-2 profile-header">
                                 <div className="d-inline-block float-left heading">Student Profile</div>
                                 <div className="d-inline-block float-right">
-                                    <span className="mr-2 data-saved-message">Data Saved</span>
-                                    <button className="btn bs" type="submit">Save</button>
+                                    <span className={"mr-2 data-saved-message " + (!showMessage ? 'd-none' : 'd-inline-block')}>Data Saved</span>
+                                    <button className="btn bs" type="submit" onClick={this.saveAllForms} disabled={isApiCalled}>Save</button>
                                 </div>
                             </div>
                         </div>
@@ -815,7 +867,7 @@ class EditstudentsInfo extends React.Component {
             </section>
         );
     }
-
+    
 }
 
 export default graphql(GET_STUDENT_EDIT_DATA, {
