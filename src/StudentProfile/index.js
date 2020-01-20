@@ -4,17 +4,14 @@ import { Link } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { studentProfileSettingsServices } from '../_services/studentProfileSettings.services';
 import '../_static/css/custom.css';
-import withLoadingHandler from '../_helpers/loading.handler';
-import { STUDENT_PROFILE } from '../_queries/StudentProfile';
+//import withLoadingHandler from '../_helpers/loading.handler';
+//import { STUDENT_PROFILE } from '../_queries/StudentProfile';
 
-
-
-
-class StudentProfile extends React.Component {
+export class StudentProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            student: [],
+            student: {},
             activeTab: 0,
         };
         this.toggleTab = this.toggleTab.bind(this);
@@ -27,7 +24,7 @@ class StudentProfile extends React.Component {
     }
 
     render() {
-        const { student } = this.props.data;
+        const { student } = this.props;
         const { activeTab } = this.state;
         return (
             <section className="xform-container">
@@ -44,6 +41,9 @@ class StudentProfile extends React.Component {
                         <div className="d-inline-block float-left heading">Student Profile</div>
                         <div className="d-inline-block float-right">
                             <div className="dont-print">
+                                <Link className="btn btn-primary mr-1" to={`/students`}>
+                                    Back
+                                </Link>
                                 <button className="btn btn-primary mr-1" onClick={() => window.print()}>
                                     Print
                                 </button>
@@ -395,9 +395,7 @@ class StudentProfile extends React.Component {
                                     </div>
                                 </div>
                             </TabPane>
-
                         </TabContent>
-
                     </div>
                 </div>
             </section>
@@ -406,10 +404,10 @@ class StudentProfile extends React.Component {
 
 }
 
-export default graphql(STUDENT_PROFILE, {
-    options: ({ }) => ({
-        variables: {
-            studentId: 2470
-        }
-    })
-})(withLoadingHandler(StudentProfile));
+// export default graphql(STUDENT_PROFILE, {
+//     options: ({ }) => ({
+//         variables: {
+//             studentId: 2470
+//         }
+//     })
+// })(withLoadingHandler(StudentProfile));

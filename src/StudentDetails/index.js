@@ -5,7 +5,7 @@ import { studentDetailsSettingsServices } from '../_services/studentDetailsSetti
 import '../_static/css/custom.css';
 import withLoadingHandler from '../_helpers/loading.handler';
 import { GET_STUDENT_DETAILS_DATA, STUDENT_DETAILS } from '../_queries/StudentDetails';
-
+import { StudentProfile } from '../StudentProfile';
 
 class StudentsDetails extends React.Component {
     constructor(props) {
@@ -46,7 +46,9 @@ class StudentsDetails extends React.Component {
             studentTypes: [],
             genders: [],
             search: '',
-            isApiCalled: false
+            isApiCalled: false,
+            showProfile: false,
+            student: {}
         }
         this.createBranches = this.createBranches.bind(this);
         this.createDepartments = this.createDepartments.bind(this);
@@ -59,11 +61,10 @@ class StudentsDetails extends React.Component {
         this.checkAllStudents = this.checkAllStudents.bind(this);
         this.onClickCheckbox = this.onClickCheckbox.bind(this);
         this.createStudentRows = this.createStudentRows.bind(this);
+        this.showStudentProfile = this.showStudentProfile.bind(this);
     }
 
     checkAllStudents(e) {
-        const { studentData } = this.state;
-        const mutateResLength = studentData.mutateResult.length;
         let chkAll = e.nativeEvent.target.checked;
         let els = document.querySelectorAll("input[type=checkbox]");
 
@@ -73,6 +74,25 @@ class StudentsDetails extends React.Component {
             } else {
                 el.checked = false;
             }
+        });
+    }
+
+    showStudentProfile(bShow, studentId) {
+        let student = {};
+        if (bShow) {
+            const { studentData } = this.state;
+            const { mutateResult } = studentData;
+            const mutateResLength = mutateResult.length;
+            for (let i = 0; i < mutateResLength; i++) {
+                if (mutateResult[i].id === studentId) {
+                    student = mutateResult[i];
+                    break;
+                }
+            }
+        }
+        this.setState({
+            student: student,
+            showProfile: bShow
         });
     }
 
@@ -104,9 +124,9 @@ class StudentsDetails extends React.Component {
                                 <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
                             </td>
                             <td>
-                                <Link className="table-link link-color" to={`/student-profile?id=${student.id}`}>
+                                <a className="table-link link-color" href="#" onClick={e => this.showStudentProfile(true, student.id)}>
                                     {student.studentName}
-                                </Link>
+                                </a>
                             </td>
                             <td>{student.rollNo}</td>
                             <td>{student.id}</td>
@@ -126,9 +146,9 @@ class StudentsDetails extends React.Component {
                             <input onClick={(e) => this.onClickCheckbox(i, e)} checked={student.isChecked} type="checkbox" name="" id={"chk" + student.id} />
                         </td>
                         <td>
-                            <Link className="table-link link-color" to={`/student-profile?id=${student.id}`}>
-                                {student.studentName}
-                            </Link>
+                            <a className="table-link link-color" href="#" onClick={e => this.showStudentProfile(true, student.id)}>
+                                    {student.studentName}
+                                </a>
                         </td>
                         <td>{student.rollNo}</td>
                         <td>{student.id}</td>
@@ -373,112 +393,120 @@ class StudentsDetails extends React.Component {
 
     render() {
         const { branches, departments, batches, sections, genders, studentTypes } = this.props.data.createStudentFilterDataCache || {};
-        const { studentData, isApiCalled } = this.state;
+        const { studentData, isApiCalled, student, showProfile } = this.state;
         return (
-            <section className="xform-container">
-                <div className="row">
-                    <div className="col-12 profile-header">
-                        <h3 className="bg-heading p-1 mb-0">
-                            <i className="fa fa-university mr-1"></i>
-                            Admin - Student Management
+            <React.Fragment>
+                {!showProfile &&
+                    <section className="xform-container">
+                        <div className="row">
+                            <div className="col-12 profile-header">
+                                <h3 className="bg-heading p-1 mb-0">
+                                    <i className="fa fa-university mr-1"></i>
+                                    Admin - Student Management
                         </h3>
-                    </div>
-                </div>
-                <div className="student-profile-container">
-                    <div className="row">
-                        <div className="col-12 mb-2 profile-header">
-                            <div className="d-inline-block float-left heading">Student Details</div>
-                            <div className="d-inline-block float-right">
-                                <button className="btn btn-primary" type="submit">Create New Student</button>
-                                <button className="btn btn-primary ml-1" type="submit">Export</button>
-                                <select name="fileType" id="fileType" className="max-width-25 ml-1">
-                                    <option value="">Select File Type</option>
-                                    <option value="CSV">CSV</option>
-                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="row student-flex">
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Branch</label>
-                                    <select name="branch" id="branch" onChange={this.onChange} value={studentData.branch.id} className="form-control">
-                                        {this.createBranches(branches)}
-                                    </select>
+                        <div className="student-profile-container">
+                            <div className="row">
+                                <div className="col-12 mb-2 profile-header">
+                                    <div className="d-inline-block float-left heading">Student Details</div>
+                                    <div className="d-inline-block float-right">
+                                        <button className="btn btn-primary" type="submit">Create New Student</button>
+                                        <button className="btn btn-primary ml-1" type="submit">Export</button>
+                                        <select name="fileType" id="fileType" className="max-width-25 ml-1">
+                                            <option value="">Select File Type</option>
+                                            <option value="CSV">CSV</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Department</label>
-                                    <select name="department" id="department" onChange={this.onChange} value={studentData.department.id} className="form-control">
-                                        {this.createDepartments(departments, studentData.branch.id, studentData.academicYear.id)}
-                                    </select>
+                            </div>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="row student-flex">
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Branch</label>
+                                            <select name="branch" id="branch" onChange={this.onChange} value={studentData.branch.id} className="form-control">
+                                                {this.createBranches(branches)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Department</label>
+                                            <select name="department" id="department" onChange={this.onChange} value={studentData.department.id} className="form-control">
+                                                {this.createDepartments(departments, studentData.branch.id, studentData.academicYear.id)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Year</label>
+                                            <select name="batch" id="batch" onChange={this.onChange} value={studentData.batch.id} className="form-control">
+                                                {this.createBatches(batches, studentData.department.id)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Section</label>
+                                            <select name="section" id="section" onChange={this.onChange} value={studentData.section.id} className="form-control">
+                                                {this.createSections(sections, studentData.batch.id)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Gender</label>
+                                            <select name="gender" id="gender" onChange={this.onChange} value={studentData.gender.id} className="form-control">
+                                                {this.createGenders(genders)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Student Type</label>
+                                            <select name="studentType" id="studentType" onChange={this.onChange} value={studentData.studentType.id} className="form-control">
+                                                {this.createStudentTypes(studentTypes)}
+                                            </select>
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor="">Search</label>
+                                            <input type="text" name="search" className="form-control" value={studentData.search} onChange={this.onChange} />
+                                        </div>
+                                        <div className="w-auto px-0">
+                                            <label htmlFor=""></label>
+                                            <button className="btn btn-primary" id="btnFind" name="btnFind" onClick={this.onClick}
+                                                disabled={isApiCalled}>Search Students</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Year</label>
-                                    <select name="batch" id="batch" onChange={this.onChange} value={studentData.batch.id} className="form-control">
-                                        {this.createBatches(batches, studentData.department.id)}
-                                    </select>
-                                </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Section</label>
-                                    <select name="section" id="section" onChange={this.onChange} value={studentData.section.id} className="form-control">
-                                        {this.createSections(sections, studentData.batch.id)}
-                                    </select>
-                                </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Gender</label>
-                                    <select name="gender" id="gender" onChange={this.onChange} value={studentData.gender.id} className="form-control">
-                                        {this.createGenders(genders)}
-                                    </select>
-                                </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Student Type</label>
-                                    <select name="studentType" id="studentType" onChange={this.onChange} value={studentData.studentType.id} className="form-control">
-                                        {this.createStudentTypes(studentTypes)}
-                                    </select>
-                                </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor="">Search</label>
-                                    <input type="text" name="search" className="form-control" value={studentData.search} onChange={this.onChange} />
-                                </div>
-                                <div className="w-auto px-0">
-                                    <label htmlFor=""></label>
-                                    <button className="btn btn-primary" id="btnFind" name="btnFind" onClick={this.onClick}
-                                        disabled={isApiCalled}>Search Students</button>
+                            </div>
+                            <div className="row mt-3">
+                                <div className="col-12 p-0">
+                                    <table id="studentlistpage" className="striped-table w-100 bg-white">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="checkbox" onClick={(e) => this.checkAllStudents(e)} value="checkedall" name="" id="chkCheckedAll" />
+                                                </th>
+                                                <th>Student Name</th>
+                                                <th>Roll No</th>
+                                                <th>Student Id</th>
+                                                <th>Department</th>
+                                                <th>Year</th>
+                                                <th>Section</th>
+                                                <th>Gender</th>
+                                                <th>Type</th>
+                                                <th>Primary Contact</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                this.createStudentRows(this.state.studentData.mutateResult)
+                                            }
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row mt-3">
-                        <div className="col-12 p-0">
-                            <table id="studentlistpage" className="striped-table w-100 bg-white">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input type="checkbox" onClick={(e) => this.checkAllStudents(e)} value="checkedall" name="" id="chkCheckedAll" />
-                                        </th>
-                                        <th>Student Name</th>
-                                        <th>Roll No</th>
-                                        <th>Student Id</th>
-                                        <th>Department</th>
-                                        <th>Year</th>
-                                        <th>Section</th>
-                                        <th>Gender</th>
-                                        <th>Type</th>
-                                        <th>Primary Contact</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        this.createStudentRows(this.state.studentData.mutateResult)
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div className="student-profile-container"></div>
-            </section>
+                        <div className="student-profile-container"></div>
+                    </section>
+                }
+                {
+                    showProfile &&
+                    <StudentProfile student={student} />
+                }
+            </React.Fragment>
         );
     }
 
