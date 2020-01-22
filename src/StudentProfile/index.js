@@ -62,11 +62,11 @@ export class StudentProfile extends React.Component {
                             </div>
                         </div>
                         <div className="col-md-10 mt-2">
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-md-12">
                                     <h1 className="dblue-text">{student.studentName} {student.studentMiddleName} {student.studentLastName}</h1>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="row">
                                 <div className="col-md-4 mb-2">
                                     <span className="profile-label">Contact No: </span>
