@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const STUDENT_DETAILS = gql`
+export const GET_STUDENT_LIST = gql`
   mutation getStudentList($filter:StudentListFilterInput!){
     getStudentList(filter:$filter){
       id

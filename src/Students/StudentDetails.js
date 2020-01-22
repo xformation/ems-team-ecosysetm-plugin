@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
-import { studentDetailsSettingsServices } from '../_services/studentDetailsSettings.services';
 import '../_static/css/custom.css';
 import withLoadingHandler from '../_helpers/loading.handler';
-import { GET_STUDENT_DETAILS_DATA, STUDENT_DETAILS } from '../_queries/StudentDetails';
-import { StudentProfile } from '../StudentProfile';
+import { GET_STUDENT_LIST } from '../_queries/student';
+import { CREATE_STUDENT_FILTER_DATA_CACHE } from '../_queries/common';
+import { StudentProfile } from './StudentProfile';
 
 class StudentsDetails extends React.Component {
     constructor(props) {
@@ -523,13 +522,13 @@ class StudentsDetails extends React.Component {
 
 }
 
-export default graphql(GET_STUDENT_DETAILS_DATA, {
+export default graphql(CREATE_STUDENT_FILTER_DATA_CACHE, {
     options: ({ }) => ({
         variables: {
             collegeId: 1801,
             academicYearId: 1701
         }
     })
-})(withLoadingHandler(graphql(STUDENT_DETAILS, {
+})(withLoadingHandler(graphql(GET_STUDENT_LIST, {
     name: "mutate"
 })(StudentsDetails)));

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { graphql } from 'react-apollo';
-import { addAdmissionSettingsServices } from '../_services/addAdmissionSettings.services';
 import '../_static/css/custom.css';
 import * as ReactSurvey from "xform-react";
 import "xform-react/xform.min.css";
 import withLoadingHandler from '../_helpers/loading.handler';
-import { CREATE_ADMISSION_DATA_CACHE, ADD_ADMISSION_APPLICATION } from '../_queries/AddAdmission';
+import { CREATE_ADMISSION_DATA_CACHE, ADD_ADMISSION_APPLICATION } from '../_queries/admission';
 
 const customCss = {
     root: "form-container",
@@ -30,7 +29,7 @@ const customCss = {
     }
 };
 
-class AddadminssionInfo extends React.Component {
+class AddAdminssion extends React.Component {
     cumulativeResult = [];
     admissionFormRef = [];
     personalFormRef = [];
@@ -644,7 +643,7 @@ export default graphql(CREATE_ADMISSION_DATA_CACHE, {
 })(withLoadingHandler(
     graphql(ADD_ADMISSION_APPLICATION, {
         name: "addAdmissionMutation"
-    })(AddadminssionInfo)
+    })(AddAdminssion)
 ));
 
 

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const ADMISSION_ENQUIRY_DATA = gql`
+export const SEARCH_ADMISSION_ON_TYPE = gql`
 mutation searchAdmissionOnType($admissionEnquiryType:String, $branchId:Long ){
     searchAdmissionOnType(admissionEnquiryType:$admissionEnquiryType,branchId:$branchId){
       id,

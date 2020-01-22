@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const GET_STUDENT_DETAILS_DATA = gql`
+export const CREATE_STUDENT_FILTER_DATA_CACHE = gql`
   query createStudentFilterDataCache($collegeId:String!, $academicYearId:String!){
     createStudentFilterDataCache(collegeId:$collegeId, academicYearId:$academicYearId  ) {
     branches{

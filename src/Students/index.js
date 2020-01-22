@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { graphql, QueryProps, MutationFunc, compose } from 'react-apollo';
 import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
-import  AddStudent  from '../AddStudent/index';
-import  StudentDetails  from '../StudentDetails/index';
+import  AddStudent  from './AddStudent';
+import  StudentDetails  from './StudentDetails';
 
 
 export default class Student extends React.Component {
@@ -35,11 +34,6 @@ export default class Student extends React.Component {
               Student Details
             </NavLink>
           </NavItem>
-          <NavItem className="cursor-pointer">
-            <NavLink className={`${activeTab === 2 ? 'active' : ''}`} onClick={() => {this.toggleTab(2);}}>
-              Test 3
-            </NavLink>
-          </NavItem>
         </Nav>
         <TabContent activeTab={activeTab} className="border-right">
           <TabPane tabId={0}>
@@ -47,9 +41,6 @@ export default class Student extends React.Component {
           </TabPane>
           <TabPane tabId={1}>
             <StudentDetails />
-          </TabPane>
-          <TabPane tabId={2}>
-            Test3
           </TabPane>
         </TabContent>
       </section>

@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import { studentProfileSettingsServices } from '../_services/studentProfileSettings.services';
 import '../_static/css/custom.css';
-//import withLoadingHandler from '../_helpers/loading.handler';
-//import { STUDENT_PROFILE } from '../_queries/StudentProfile';
 
 export class StudentProfile extends React.Component {
     constructor(props) {
@@ -403,11 +399,3 @@ export class StudentProfile extends React.Component {
     }
 
 }
-
-// export default graphql(STUDENT_PROFILE, {
-//     options: ({ }) => ({
-//         variables: {
-//             studentId: 2470
-//         }
-//     })
-// })(withLoadingHandler(StudentProfile));

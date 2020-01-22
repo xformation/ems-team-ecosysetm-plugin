@@ -79,12 +79,13 @@ export class CalendarSetup extends React.Component {
     componentDidMount() {
         academicSettingsServices.getGlobalConfiguration("admin").then(
             response => {
-                let academicYearId = null;
-                if (response.selectedAcademicYearId === null || response.selectedAcademicYearId === 0) {
-                    academicYearId = response.cmsAcademicYearVo.id;
-                } else {
-                    academicYearId = response.selectedAcademicYearId;
-                }
+                let academicYearId = 1701; //Temp
+                // if (response.selectedAcademicYearId === null || response.selectedAcademicYearId === 0) {
+                //     academicYearId = response.cmsAcademicYearVo.id;
+                // } else {
+                //     academicYearId = response.selectedAcademicYearId;
+                // }
+
                 if (academicYearId) {
                     this.setState({
                         academicYearId
@@ -97,7 +98,7 @@ export class CalendarSetup extends React.Component {
                         }
                     );
                     let departmentId = response.selectedDepartmentId;
-                    departmentId = 2001;
+                    departmentId = 2001; //temp
                     this.setState({
                         departmentId
                     });

@@ -1,0 +1,121 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.5",
+    "version": "1.0.0",
+    "id": "7c3e0134-42c0-488c-a577-5e03cebfee35",
+    "packageName": "com.contoso.helloworld",
+    "developer": {
+        "name": "CMS",
+        "websiteUrl": "https://www.synectiks.com",
+        "privacyUrl": "https://www.synectiks.com",
+        "termsOfUseUrl": "https://www.synectiks.com"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "CMS Plugin",
+        "full": "CMS plugin"
+    },
+    "description": {
+        "short": "CMS Plugin",
+        "full": "This sample app provides a CMS plugin"
+    },
+    "accentColor": "#60A18E",
+    "configurableTabs": [
+        {
+            "configurationUrl": "https://fd49a72e.ngrok.io/configure",
+            "canUpdateConfiguration": true,
+            "scopes": [
+                "team"
+            ]
+        }
+    ],
+    "staticTabs": [
+        {
+            "entityId": "com.contoso.helloworld.hellotab",
+            "name": "College Info",
+            "contentUrl": "https://fd49a72e.ngrok.io/college-info",
+            "websiteUrl": "https://fd49a72e.ngrok.io/college-info",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "admissionInfo",
+            "name": "Admission Info",
+            "contentUrl": "https://fd49a72e.ngrok.io/admission",
+            "websiteUrl": "https://fd49a72e.ngrok.io/admission",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "addAdmission",
+            "name": "Add Admission",
+            "contentUrl": "https://fd49a72e.ngrok.io/addadmission",
+            "websiteUrl": "https://fd49a72e.ngrok.io/addadmission",
+            "scopes": [
+                "personal"
+            ]
+        },
+        {
+            "entityId": "student",
+            "name": "Student Info",
+            "contentUrl": "https://fd49a72e.ngrok.io/addstudent",
+            "websiteUrl": "https://fd49a72e.ngrok.io/addstudent",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "bots": [
+        {
+            "botId": "a6c2f0e0-e747-4f39-8445-4608e182306b",
+            "scopes": [
+                "personal",
+                "team"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "a6c2f0e0-e747-4f39-8445-4608e182306b",
+            "canUpdateConfiguration": true,
+            "commands": [
+                {
+                    "id": "getRandomText",
+                    "type": "query",
+                    "title": "Get some random text for fun",
+                    "description": "Gets some random text and images",
+                    "initialRun": true,
+                    "fetchTask": false,
+                    "context": [
+                        "commandBox",
+                        "compose"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "cardTitle",
+                            "title": "Card title",
+                            "description": "Card title to use",
+                            "inputType": "text"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "fd49a72e.ngrok.io",
+        "fd49a72e.ngrok.io",
+        "fd49a72e.ngrok.io"
+    ]
+}
