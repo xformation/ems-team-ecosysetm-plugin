@@ -741,7 +741,7 @@ class AddstudentsInfo extends React.Component {
     }
 
     render() {
-        const { isApiCalled, showMessage, activeTab } = this.state;
+        const { isApiCalled, showMessage, activeTab } = this.props.data.addStudentMutation || {};
         return (
             <section className="xform-container">
                 <div className="row">

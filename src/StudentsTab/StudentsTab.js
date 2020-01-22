@@ -3,7 +3,7 @@ import { graphql, QueryProps, MutationFunc, compose } from 'react-apollo';
 import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import  AddStudent  from '../AddStudent/index';
 import  StudentDetails  from '../StudentDetails/index';
-import  StudentProfile  from '../StudentProfile/index';
+
 
 export default class Student extends React.Component {
   constructor(props) {
@@ -46,11 +46,7 @@ export default class Student extends React.Component {
             <AddStudent />
           </TabPane>
           <TabPane tabId={1}>
-
             <StudentDetails />
-
-            {/* <StudentProfile /> */}
-
           </TabPane>
           <TabPane tabId={2}>
             Test3

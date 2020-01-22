@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
-
 import ConfigurePage from './ConfigurePage';
 import { config } from './config';
 import { history } from './_helpers';
@@ -10,7 +9,6 @@ import { CollegeInfo } from './CollegeInfo';
 import AdminssionInfo from './Admission';
 import AddAdminssionInfo from './Addadmission';
 import Students from './StudentsTab/StudentsTab';
-// import StudentProfile from './StudentProfile';
 import EditStudent from './EditStudent';
 import "./_static/css/tabs.css";
 import { createGraphQLClient } from './createGraphQLClient';
@@ -33,7 +31,6 @@ export class App extends React.Component {
                             <Route exact path={`${config.basePath}admission`} component={AdminssionInfo} />
                             <Route exact path={`${config.basePath}addadmission`} component={AddAdminssionInfo} />
                             <Route exact path={`${config.basePath}students`} component={Students} />
-                            {/* <Route exact path={`${config.basePath}student-profile`} component={StudentProfile} />   */}
                             <Route exact path={`${config.basePath}editstudent`} component={EditStudent} />
                         </div>
                     </Router>

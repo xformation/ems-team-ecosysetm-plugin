@@ -147,8 +147,8 @@ class StudentsDetails extends React.Component {
                         </td>
                         <td>
                             <a className="table-link link-color" href="#" onClick={e => this.showStudentProfile(true, student.id)}>
-                                    {student.studentName}
-                                </a>
+                                {student.studentName}
+                            </a>
                         </td>
                         <td>{student.rollNo}</td>
                         <td>{student.id}</td>
@@ -165,7 +165,6 @@ class StudentsDetails extends React.Component {
         }
         return retVal;
     }
-
 
     onChange = (e) => {
         const { search } = e.nativeEvent.target;
@@ -285,21 +284,25 @@ class StudentsDetails extends React.Component {
 
     createBranches(branches) {
         let branchesOptions = [<option key={0} value="">Select Branch</option>];
-        for (let i = 0; i < branches.length; i++) {
-            branchesOptions.push(
-                <option key={branches[i].id} value={branches[i].id}>{branches[i].branchName}</option>
-            );
+        if (branches) {
+            for (let i = 0; i < branches.length; i++) {
+                branchesOptions.push(
+                    <option key={branches[i].id} value={branches[i].id}>{branches[i].branchName}</option>
+                );
+            }
         }
         return branchesOptions;
     }
 
     createDepartments(departments, selectedBranchId, selectedAcademicYearId) {
         let departmentsOptions = [<option key={0} value="">Select department</option>];
-        for (let i = 0; i < departments.length; i++) {
-            if (selectedBranchId == departments[i].branch.id && selectedAcademicYearId == departments[i].academicyear.id) {
-                departmentsOptions.push(
-                    <option key={departments[i].id} value={departments[i].id}>{departments[i].name}</option>
-                );
+        if (departments) {
+            for (let i = 0; i < departments.length; i++) {
+                if (selectedBranchId == departments[i].branch.id && selectedAcademicYearId == departments[i].academicyear.id) {
+                    departmentsOptions.push(
+                        <option key={departments[i].id} value={departments[i].id}>{departments[i].name}</option>
+                    );
+                }
             }
         }
         return departmentsOptions;
@@ -307,13 +310,15 @@ class StudentsDetails extends React.Component {
 
     createBatches(batches, selectedDepartmentId) {
         let batchesOptions = [<option key={0} value="">Select Year</option>];
-        for (let i = 0; i < batches.length; i++) {
-            let id = batches[i].id;
-            let dptId = "" + batches[i].department.id;
-            if (dptId == selectedDepartmentId) {
-                batchesOptions.push(
-                    <option key={id} value={id}>{batches[i].batch}</option>
-                );
+        if (batches) {
+            for (let i = 0; i < batches.length; i++) {
+                let id = batches[i].id;
+                let dptId = "" + batches[i].department.id;
+                if (dptId == selectedDepartmentId) {
+                    batchesOptions.push(
+                        <option key={id} value={id}>{batches[i].batch}</option>
+                    );
+                }
             }
         }
         return batchesOptions;
@@ -321,13 +326,15 @@ class StudentsDetails extends React.Component {
 
     createSections(sections, selectedBatchId) {
         let sectionsOptions = [<option key={0} value="">Select Section</option>];
-        for (let i = 0; i < sections.length; i++) {
-            let id = sections[i].id;
-            let sbthId = "" + sections[i].batch.id;
-            if (sbthId == selectedBatchId) {
-                sectionsOptions.push(
-                    <option key={id} value={id}>{sections[i].section}</option>
-                );
+        if (sections) {
+            for (let i = 0; i < sections.length; i++) {
+                let id = sections[i].id;
+                let sbthId = "" + sections[i].batch.id;
+                if (sbthId == selectedBatchId) {
+                    sectionsOptions.push(
+                        <option key={id} value={id}>{sections[i].section}</option>
+                    );
+                }
             }
         }
         return sectionsOptions;
@@ -335,22 +342,26 @@ class StudentsDetails extends React.Component {
 
     createStudentTypes(studentTypes) {
         let studentTypesOptions = [<option key={0} value="">Select Student Type</option>];
-        for (let i = 0; i < studentTypes.length; i++) {
-            let id = studentTypes[i].id;
-            studentTypesOptions.push(
-                <option key={id} value={studentTypes[i].description}>{studentTypes[i].description}</option>
-            );
+        if (studentTypes) {
+            for (let i = 0; i < studentTypes.length; i++) {
+                let id = studentTypes[i].id;
+                studentTypesOptions.push(
+                    <option key={id} value={studentTypes[i].description}>{studentTypes[i].description}</option>
+                );
+            }
         }
         return studentTypesOptions;
     }
 
     createGenders(genders) {
         let gendersOptions = [<option key={0} value="">Select Gender</option>];
-        for (let i = 0; i < genders.length; i++) {
-            let id = genders[i].id;
-            gendersOptions.push(
-                <option key={id} value={genders[i].description}>{genders[i].description}</option>
-            );
+        if (genders) {
+            for (let i = 0; i < genders.length; i++) {
+                let id = genders[i].id;
+                gendersOptions.push(
+                    <option key={id} value={genders[i].description}>{genders[i].description}</option>
+                );
+            }
         }
         return gendersOptions;
     }
@@ -403,7 +414,7 @@ class StudentsDetails extends React.Component {
                                 <h3 className="bg-heading p-1 mb-0">
                                     <i className="fa fa-university mr-1"></i>
                                     Admin - Student Management
-                        </h3>
+                                </h3>
                             </div>
                         </div>
                         <div className="student-profile-container">
